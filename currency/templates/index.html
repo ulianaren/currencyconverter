@@ -1,0 +1,69 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+    
+ </head>
+ 
+ <body>
+   <div class="container">
+      <form action="/convert" id="conversion-form" method = "post">
+         <label for="currency_input">From Currency:</label>
+         <select id="currency_input" name="currency_input">
+            {% for currency in currencies %}
+               <option value="{{ currency }}">{{ currency }}</option> <!-- 1d=st {{currency}} is what sent to the server-->
+            {% endfor %}                                        <!-- 2d {{currency}} is what displayed to the user in the dropdown menu-->
+         </select><br><br>
+
+         <label for="currency_output">To Currency:</label>
+         <select id="currency_output" name="currency_output">
+            {% for currency in currencies %}
+               <option value="{{ currency }}">{{ currency }}</option>
+            {% endfor %}
+         </select><br><br>
+
+         <label for="amount">Amount:</label><br>
+         <input type="text" id="amount" name="amount"><br><br>
+         <input type="button" id="convert-button" value="Convert">
+      </form>
+</div>
+
+   <div id="result"></div>
+
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   <!-- Updating result of conversion without page refresh with AJAX-->
+   <script>
+      $(document).ready(function() { // Wait for document to load completely
+         $('#convert-button').click(function(event) { // When convert button is clicked
+            event.preventDefault();  // Prevent the default button click behavior
+   
+            $('#conversion-form').submit(); // Submit form
+         });
+   
+         $('#conversion-form').submit(function(event) { // When form is submited
+            
+            event.preventDefault(); // Prevent default form submission
+   
+            var formData = $(this).serialize(); // Instead serialize form data for AJAX
+   
+            // AJAX request
+            $.ajax({
+               type: 'POST',
+               url: '/convert', // Specify url to which send a request
+               data: formData, //  Pass serialized data
+               dataType: 'json', // Specify expected type of data
+               success: function(response) { // If successful 
+                  $('#result').html(response.converted_amount); // Update result div with the converted amount
+               }
+            });
+         });
+      });
+   </script>
+   
+ </body>
+ </html>

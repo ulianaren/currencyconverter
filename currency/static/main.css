@@ -1,0 +1,88 @@
+/* Centering the form and result */
+body {
+ 
+    
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("background.png");
+    color: rgb(54, 91, 109);
+    font-family: Georgia, serif;
+
+   
+}
+
+/* Styling the form */
+#conversion-form {
+     
+    border: 5px solid rgb(54, 91, 109);
+    padding: 100px;
+    border-radius: 10px;
+    width: calc(100% - 200px);
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.833);
+    
+}
+
+/* Styling form elements */
+label, select, input[type="text"], input[type="button"] {
+    font-size: 18px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    width: 30%;
+}
+
+label {
+    padding-right:12px;
+} 
+select{
+    padding:3px;
+    font-family: Georgia, serif;
+    color:  rgb(54, 91, 109);
+    border-color:  rgb(54, 91, 109);
+
+
+    
+}
+input[type="button"] {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8px 45px;
+    border-radius: 12px;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    background-color: rgb(54, 91, 109); 
+    color: rgb(255, 255, 255); 
+    border: 2px solid rgb(54, 91, 109);
+
+}
+
+input[type="button"]:hover {
+    background-color: #ffffff;
+    color: rgb(54, 91, 109);
+  }
+
+input[type="text"] {
+    border-color: rgb(54, 91, 109);
+    font-family: Georgia, serif;
+    color: rgb(54, 91, 109);
+    padding:4px;
+    margin-top: 7px;
+    
+}
+/* Styling the result container */
+#result {
+
+    border: 5px solid rgb(88, 54, 109);
+    border-radius: 16px;
+    padding: 20px;
+    width: 15%; /* 50% of the screen width */
+    background-color: rgb(255, 255, 255);
+    color: rgb(88, 54, 109);
+    
+}
